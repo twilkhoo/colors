@@ -1,18 +1,16 @@
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
-import useAuth from '../hooks/useAuth';
-import { useRouter } from "next/router";
+import useAuth from "../hooks/useAuth";
 
-
-export default function Home() {
+const Home = () => {
   const { user, login } = useAuth();
 
-  async function tempHandleGoogleSignIn() {
+  const tempHandleGoogleSignIn = async () => {
     await login();
   }
 
   return (
     <Flex height="100vh" alignItems="center" justifyContent="center">
-      <Box >
+      <Box>
         <Heading>Hello World</Heading>
         <Text>User: {user?.displayName}</Text>
         <Button onClick={tempHandleGoogleSignIn}>Sign in with google</Button>
@@ -20,3 +18,5 @@ export default function Home() {
     </Flex>
   );
 }
+
+export default Home;

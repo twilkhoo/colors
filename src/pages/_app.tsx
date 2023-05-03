@@ -3,8 +3,7 @@ import type { AppProps } from 'next/app';
 import customTheme from "../theme/index";
 import { AuthProvider } from '../context/AuthProvider';
 
-export default function App({ Component, pageProps }: AppProps) {
-
+const App = ({ Component, pageProps }: AppProps) => {
   return (
     <AuthProvider>
       <ChakraProvider theme={customTheme}>
@@ -13,3 +12,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </AuthProvider>
   );
 }
+
+export default App;

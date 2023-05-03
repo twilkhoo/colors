@@ -1,15 +1,13 @@
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
-// import { useFirebaseAuth } from '../context/FirebaseAuthContext';
-import { useRouter } from "next/router";
 import withAuth from "@/components/withAuth";
 import useAuth from "@/hooks/useAuth";
 
 const Journal = () => {
   const { user, logout } = useAuth();
 
-  async function tempHandleSignOut() {
+  const tempHandleSignOut = async () => {
     await logout();
-  }
+  };
 
   return (
     <Flex height="100vh" alignItems="center" justifyContent="center">
@@ -20,6 +18,6 @@ const Journal = () => {
       </Box>
     </Flex>
   );
-}
+};
 
 export default withAuth(Journal);
