@@ -1,22 +1,38 @@
-import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
-import useAuth from "../hooks/useAuth";
+import { Grid, GridItem, useMediaQuery, useTheme } from "@chakra-ui/react";
+import IndexBackground from "@/components/index/IndexBackground";
+import Navbar from "@/components/navbar/Navbar";
+import { useEffect, useState } from "react";
+import LeftText from "@/components/index/LeftText";
+import DecorativeBox from "@/components/index/DecorativeBox";
 
 const Home = () => {
-  const { user, login } = useAuth();
+  const theme = useTheme();
+  const [isLargerThanXl] = useMediaQuery(
+    `(min-width: ${theme.breakpoints.xl})`
+  );
 
-  const tempHandleGoogleSignIn = async () => {
-    await login();
-  }
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSeconds((prevSeconds) => prevSeconds + 1);
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <Flex height="100vh" alignItems="center" justifyContent="center">
-      <Box>
-        <Heading>Hello World</Heading>
-        <Text>User: {user?.displayName}</Text>
-        <Button onClick={tempHandleGoogleSignIn}>Sign in with google</Button>
-      </Box>
-    </Flex>
+    <IndexBackground>
+      <Navbar />
+      <Grid templateColumns={{ base: "1fr", xl: "60% 40%" }}>
+        <GridItem>
+          {isLargerThanXl ? <LeftText seconds={seconds} /> : <DecorativeBox />}
+        </GridItem>
+        <GridItem>
+          {!isLargerThanXl ? <LeftText seconds={seconds} /> : <DecorativeBox />}
+        </GridItem>
+      </Grid>
+    </IndexBackground>
   );
-}
+};
 
 export default Home;
