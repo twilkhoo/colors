@@ -30,7 +30,6 @@ const InfoModal = ({ isOpen, onClose }: InfoModalProps) => {
         maxWidth={`calc(min(75%, 1500px))`}
         bg="rgba(255, 255, 255, 0.3)"
       >
-        <ModalCloseButton color="white" />
         <ModalBody>
           <Grid templateColumns={{ base: "1fr", xl: "60% 40%" }}>
             <GridItem>
