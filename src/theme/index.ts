@@ -1,44 +1,20 @@
 import { extendTheme } from "@chakra-ui/react";
-import { Alex_Brush, Dancing_Script, Fredericka_the_Great, Inter, Merienda, Poiret_One, Sen, Stalemate } from "next/font/google"
+import { Sen } from "next/font/google"
 
-const poiretOne = Poiret_One({ subsets: ["latin"], weight: "400" });
-const inter = Inter({ subsets: ["latin"], weight: "400" });
-const fred = Fredericka_the_Great({ subsets: ["latin"], weight: "400" });
-const stalemate = Stalemate({ subsets: ["latin"], weight: "400" });
-const dancingScript = Dancing_Script({ subsets: ["latin"], weight: "400" });
-const alexBrush = Alex_Brush({ subsets: ["latin"], weight: "400" });
-const merienda = Merienda({ subsets: ["latin"], weight: "400" });
 const sen = Sen({ subsets: ["latin"], weight: "400" });
 
 const customTheme = extendTheme({
   styles: {
     global: () => ({
       body: {
-        bg: "white",
-      },
-      "::selection": {
-        background: "white",
-        color: "background.50"
-      },
-      "&::-webkit-scrollbar": {
-        width: "8px",
-      },
-      "&::-webkit-scrollbar-track": {
-        width: "8px",
-        backgroundColor: "transparent",
-      },
-      "&::-webkit-scrollbar-thumb": {
-        backgroundColor: "white",
-        borderRadius: "8px",
+        bg: "background.grey.100",
       },
     }),
   },
   breakpoints: {
-    sm: "480px",
+    sm: "320px",
     md: "768px",
-    lg: "992px",
-    xl: "1280px",
-
+    lg: "960px",
   },
   config: {
     initialColorMode: "light",
@@ -76,6 +52,14 @@ const customTheme = extendTheme({
       color: "white",
     },
 
+    homeText3: {
+      fontWeight: 400,
+      fontSize: ["20px", null, "24px", "30px", "36px" ],
+      lineHeight: "160%",
+      fontFamily: sen.style.fontFamily,
+      color: "white",
+    },
+
 
     buttonText1: {
       fontWeight: 400,
@@ -95,6 +79,10 @@ const customTheme = extendTheme({
           border: "1px",
           _hover: { bg: "rgba(0,0,0,0.1)" },
           _active: { bg: "rgba(0,0,0,0.2)" },
+        },
+        text: {
+          bg: "transparent",
+          color: "white",
         },
       },
     },

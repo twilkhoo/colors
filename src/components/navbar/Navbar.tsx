@@ -1,4 +1,4 @@
-import { Box, Container, Flex, Spacer, Text } from "@chakra-ui/react";
+import { Flex, Spacer, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import useAuth from "../../hooks/useAuth";
 
