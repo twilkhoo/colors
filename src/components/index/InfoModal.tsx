@@ -1,10 +1,12 @@
 import {
+  Box,
   Grid,
   GridItem,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
+  ModalHeader,
   ModalOverlay,
   useMediaQuery,
   useTheme,
@@ -19,9 +21,6 @@ type InfoModalProps = {
 
 const InfoModal = ({ isOpen, onClose }: InfoModalProps) => {
   const theme = useTheme();
-  const [isLargerThanXl] = useMediaQuery(
-    `(min-width: ${theme.breakpoints.xl})`
-  );
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered motionPreset="scale">
@@ -29,25 +28,19 @@ const InfoModal = ({ isOpen, onClose }: InfoModalProps) => {
       <ModalContent
         maxWidth={`calc(min(75%, 1500px))`}
         bg="rgba(255, 255, 255, 0.3)"
+        marginY="100px"
+        p="40px"
       >
-        <ModalBody>
-          <Grid templateColumns={{ base: "1fr", xl: "60% 40%" }}>
-            <GridItem>
-              {isLargerThanXl ? (
+        <ModalCloseButton color="white"/>
+        <ModalBody overflow="hidden" p={0}>
+            <Grid templateColumns={{ base: "1fr", xl: "60% 40%" }} gap="20px">
+              <GridItem>
                 <ModalLeftText onClose={onClose} />
-              ) : (
+              </GridItem>
+              <GridItem>
                 <ModalDecorativeBox />
-              )}
-            </GridItem>
-
-            <GridItem>
-              {!isLargerThanXl ? (
-                <ModalLeftText onClose={onClose} />
-              ) : (
-                <ModalDecorativeBox />
-              )}
-            </GridItem>
-          </Grid>
+              </GridItem>
+            </Grid>
         </ModalBody>
       </ModalContent>
     </Modal>
