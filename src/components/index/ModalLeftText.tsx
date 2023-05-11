@@ -8,7 +8,7 @@ type ModalLeftTextProps = {
 const ModalLeftText = ({ onClose }: ModalLeftTextProps) => {
 
   return (
-    <Box  borderWidth={5} borderColor="black">
+    <>
       <FadingText delay={1} seconds={2}>
         <Text textStyle="homeText3" id="secondPart">
           chromatic;notes is a{" "}
@@ -42,11 +42,11 @@ const ModalLeftText = ({ onClose }: ModalLeftTextProps) => {
       </FadingText>
 
       <FadingText delay={10} seconds={2}>
-        <Button variant="outlined" onClick={onClose} px="40px" py="30px">
-          <Text textStyle="buttonText1">return</Text>
+        <Button variant="outlined" onClick={onClose} px="30px" py="25px">
+          <Text textStyle="buttonText2">return</Text>
         </Button>
       </FadingText>
-    </Box>
+    </>
   );
 };
 export default ModalLeftText;

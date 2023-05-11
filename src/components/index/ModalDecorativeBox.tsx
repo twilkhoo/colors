@@ -1,10 +1,10 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Center, Flex, Image, Text } from "@chakra-ui/react";
 
 const ModalDecorativeBox = () => {
   return (
-    <Box borderColor="black" borderWidth={5}>
-      modal bruh
-    </Box>
+    <Center h="100%">
+      <Image src="/gif.png" w="calc(min(500px, 100%))" />
+    </Center>
   );
 };
 

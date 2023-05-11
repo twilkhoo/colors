@@ -15,6 +15,7 @@ const customTheme = extendTheme({
     sm: "320px",
     md: "768px",
     lg: "960px",
+    xl: "1280px",
   },
   config: {
     initialColorMode: "light",
@@ -24,9 +25,14 @@ const customTheme = extendTheme({
       50: "#0184ff",
       100: "#38adf5",
     },
-    text: {
-
-    },
+    moods: {
+      100: "#525FA9",
+      200: "#75B1AA",
+      300: "#D1D298",
+      400: "#FEE28F",
+      500: "#F99153",
+      600: "#E2514A",
+    }
   },
   textStyles: {
     navbar: {
@@ -54,7 +60,7 @@ const customTheme = extendTheme({
 
     homeText3: {
       fontWeight: 400,
-      fontSize: ["20px", null, "24px", "30px", "36px" ],
+      fontSize: ["20px", null, "20px", "24px", "30px", "32px" ],
       lineHeight: "160%",
       fontFamily: sen.style.fontFamily,
       color: "white",
@@ -64,6 +70,14 @@ const customTheme = extendTheme({
     buttonText1: {
       fontWeight: 400,
       fontSize: "30px",
+      lineHeight: "160%",
+      fontFamily: sen.style.fontFamily,
+      color: "white",
+    },
+
+    buttonText2: {
+      fontWeight: 400,
+      fontSize: ["20px", null, "20px", "20px", "24px", "24px" ],
       lineHeight: "160%",
       fontFamily: sen.style.fontFamily,
       color: "white",
