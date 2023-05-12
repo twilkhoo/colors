@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Grid, GridItem, Text, useMediaQuery, useTheme } from "@chakra-ui/react";
 import IndexBackground from "@/components/index/IndexBackground";
-import Navbar from "@/components/navbar/Navbar";
+import Navbar from "@/components/Navbar";
 import { useEffect, useState } from "react";
 import LeftText from "@/components/index/LeftText";
 import DecorativeBox from "@/components/index/DecorativeBox";

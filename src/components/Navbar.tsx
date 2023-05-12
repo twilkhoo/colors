@@ -1,6 +1,6 @@
 import { Flex, Spacer, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import useAuth from "../../hooks/useAuth";
+import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
   const { login } = useAuth();
@@ -19,12 +19,12 @@ const Navbar = () => {
       }}
     >
       <Flex
-        px={[25, null, 50, 75, 100, 150 ]}
+        
         py="50px"
       >
         <Text textStyle="navbar">chromatic;notes</Text>
         <Spacer />
-        <Text textStyle="navbar" _hover={{ cursor: "pointer" }} onClick={tempHandleGoogleSignIn} >enter</Text>
+        <Text textStyle="navbar" _hover={{ cursor: "pointer" }} onClick={tempHandleGoogleSignIn}>enter</Text>
       </Flex>
     </motion.div>
 
