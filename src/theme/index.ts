@@ -1,20 +1,36 @@
 import { extendTheme } from "@chakra-ui/react";
-import { Sen } from "next/font/google"
+import { Inter, Sen } from "next/font/google"
 
 const sen = Sen({ subsets: ["latin"], weight: "400" });
+const inter = Inter({ subsets: ["latin"], weight: "400" });
 
 const customTheme = extendTheme({
   styles: {
     global: () => ({
       body: {
-        bg: "background.grey.100",
+        bg: "white",
+      },
+      "::selection": {
+        background: "white",
+        color: "background.50"
+      },
+      "&::-webkit-scrollbar": {
+        width: "8px",
+      },
+      "&::-webkit-scrollbar-track": {
+        width: "8px",
+        backgroundColor: "transparent",
+      },
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: "white",
+        borderRadius: "8px",
       },
     }),
   },
   breakpoints: {
-    sm: "320px",
+    sm: "480px",
     md: "768px",
-    lg: "960px",
+    lg: "992px",
     xl: "1280px",
   },
   config: {
@@ -37,7 +53,7 @@ const customTheme = extendTheme({
   textStyles: {
     navbar: {
       fontWeight: 400,
-      fontSize: "24px",
+      fontSize: ["20px", null, "20px", "24px" ],
       lineHeight: "140%",
       fontFamily: sen.style.fontFamily,
       color: "white",
@@ -52,7 +68,7 @@ const customTheme = extendTheme({
 
     homeText2: {
       fontWeight: 400,
-      fontSize: "20px",
+      fontSize: ["16px", null, "16px", "20px"],
       lineHeight: "160%",
       fontFamily: sen.style.fontFamily,
       color: "white",
@@ -69,7 +85,7 @@ const customTheme = extendTheme({
 
     buttonText1: {
       fontWeight: 400,
-      fontSize: "30px",
+      fontSize:  ["20px", null, "20px", "20px", "24px", "24px" ],
       lineHeight: "160%",
       fontFamily: sen.style.fontFamily,
       color: "white",
@@ -82,6 +98,14 @@ const customTheme = extendTheme({
       fontFamily: sen.style.fontFamily,
       color: "white",
     },
+
+    footer: {
+      fontWeight: 400,
+      fontSize: "16px",
+      lineHeight: "160%",
+      fontFamily: sen.style.fontFamily,
+      color: "white",
+    }
   },
 
   components: {

@@ -1,27 +1,23 @@
 import { Box, Button, Text } from "@chakra-ui/react";
 import FadingText from "./FadingText";
+import useAuth from "@/hooks/useAuth";
 
-type ModalLeftTextProps = {
-  onClose: () => void;
-};
-
-const ModalLeftText = ({ onClose }: ModalLeftTextProps) => {
-
+const ModalLeftText = () => {
+  const { login } = useAuth();
+  const tempHandleGoogleSignIn = async () => {
+    await login();
+  };
   return (
     <>
       <FadingText delay={1} seconds={2}>
         <Text textStyle="homeText3" id="secondPart">
-          chromatic;notes is a{" "}
-          <Box as="span" textDecoration="line-through">
-            journal
-          </Box>{" "}
-          emotion tracker.
+          chromatic;notes is an emotion tracker.
         </Text>
       </FadingText>
 
       <FadingText delay={3} seconds={2}>
         <Text textStyle="homeText3">
-          once a day, you pick a color representing how you feel.
+          everyday, pick a color representing how you feel.
         </Text>
       </FadingText>
 
@@ -36,14 +32,14 @@ const ModalLeftText = ({ onClose }: ModalLeftTextProps) => {
       </FadingText>
 
       <FadingText delay={9} seconds={2}>
-        <Text textStyle="homeText3" pt="50px">
+        <Text textStyle="homeText3" pt="30px">
           care to give it a try?
         </Text>
       </FadingText>
 
       <FadingText delay={10} seconds={2}>
-        <Button variant="outlined" onClick={onClose} px="30px" py="25px">
-          <Text textStyle="buttonText2">return</Text>
+        <Button variant="outlined" onClick={tempHandleGoogleSignIn} px="30px" py="25px">
+          <Text textStyle="buttonText1">login with google</Text>
         </Button>
       </FadingText>
     </>
