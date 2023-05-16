@@ -51,7 +51,10 @@ const customTheme = extendTheme({
     },
     selection: {
       100: "#42f572",
-    }
+    },
+    warning: {
+      100: "#fc5a44",
+    },
   },
   textStyles: {
     navbar: {
@@ -119,6 +122,14 @@ const customTheme = extendTheme({
     },
 
     modalSub: {
+      fontWeight: 400,
+      fontSize: "16px",
+      lineHeight: "160%",
+      fontFamily: sen.style.fontFamily,
+      color: "white",
+    },
+
+    sideNote: {
       fontWeight: 400,
       fontSize: "16px",
       lineHeight: "160%",

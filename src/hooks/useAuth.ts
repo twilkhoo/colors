@@ -21,11 +21,10 @@ const useAuth = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
-        setLoading(false);
       } else {
         setUser(null);
-        setLoading(false);
       }
+      setLoading(false);
     });
 
     return () => {
@@ -38,7 +37,7 @@ const useAuth = () => {
       await signInWithPopup(auth, googleProvider);
       router.push("/journal");
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -47,7 +46,7 @@ const useAuth = () => {
       await signOut(auth);
       router.push("/");
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

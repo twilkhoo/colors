@@ -5,6 +5,7 @@ import {
   SimpleGrid,
   Text,
   Textarea,
+  keyframes,
   useDisclosure,
 } from "@chakra-ui/react";
 import ColorModal from "./ColorModal";
@@ -13,12 +14,40 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import useAuth from "@/hooks/useAuth";
 
+const savedAnimation = () =>
+  keyframes`
+    0% { 
+      opacity: 1;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% { 
+      opacity: 0;
+    } 
+  `;
+
 const Create = () => {
+  const [fetchingCreate, setFetchingCreate] = useState(true);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { user } = useAuth();
 
   const [mood, setMood] = useState(0);
   const [note, setNote] = useState("");
+
+  const [saveState, setSaveState] = useState(0); // 0 => saved, 1 => unsaved changes, 2 => saving..., 3 => error
+  let saveStateStr = "";
+  if (saveState == 0) {
+    saveStateStr = "saved.";
+  } else if (saveState == 1) {
+    saveStateStr = "unsaved changes.";
+  } else if (saveState == 2) {
+    saveStateStr = "saving...";
+  } else {
+    saveStateStr =
+      "error while saving, please save the note, refresh the page and try again.";
+  }
 
   const date = new Date();
   let dateStr =
@@ -33,14 +62,17 @@ const Create = () => {
       note: note,
     };
     try {
+      setSaveState(2);
       await setDoc(docPath, docData);
-      console.log("saved");
+      setSaveState(0);
     } catch (err) {
+      setSaveState(3);
       console.log(`Error while saving to firebase, ${err}.`);
     }
   };
 
   const readTodayDoc = async () => {
+    setFetchingCreate(true);
     try {
       const curDoc = await getDoc(docPath);
       if (curDoc.exists()) {
@@ -49,16 +81,22 @@ const Create = () => {
       } else {
         console.log("Note has not been added for today yet.");
       }
+      setFetchingCreate(false);
     } catch (err) {
       console.log(`Some other error occured while fetching, ${err}.`);
+      setFetchingCreate(false);
     }
-  }
+  };
 
   useEffect(() => {
     if (user) readTodayDoc();
   }, [user]);
 
-  return (
+  return fetchingCreate ? (
+    <Flex justifyContent="center" m="20px">
+      <Text textStyle="sideNote">fetching today's note...</Text>
+    </Flex>
+  ) : (
     <Box my="50px">
       <Flex alignItems="center" justifyContent="center" my="40px">
         <Text textStyle="homeText1" mr="20px">
@@ -70,7 +108,6 @@ const Create = () => {
           </Text>
         </Button>
       </Flex>
-
       <SimpleGrid columns={[1, null, 1, 1, 2]} spacing="20px">
         <Flex justifyContent={["center", null, "center", "center", "right"]}>
           <Box
@@ -86,7 +123,12 @@ const Create = () => {
               boxShadow: "0 0 10px rgba(255, 255, 255, 0.5)",
             }}
           />
-          <ColorModal isOpen={isOpen} onClose={onClose} setMood={setMood} />
+          <ColorModal
+            isOpen={isOpen}
+            onClose={onClose}
+            setMood={setMood}
+            setSaveState={setSaveState}
+          />
         </Flex>
 
         <Flex
@@ -101,7 +143,7 @@ const Create = () => {
             w="400px"
             h="200px"
             placeholder="add a note..."
-            focusBorderColor="selection.100"
+            focusBorderColor="white"
             textStyle="noteText"
             _placeholder={{ color: "rgba(255, 255, 255, 0.5)" }}
             transition="box-shadow 0.5s ease-in-out"
@@ -109,10 +151,25 @@ const Create = () => {
               boxShadow: "0 0 10px rgba(255, 255, 255, 0.5)",
             }}
             value={note}
-            onChange={(e) => setNote(e.target.value)}
+            onChange={(e) => {
+              setNote(e.target.value);
+              setSaveState(1);
+            }}
           />
         </Flex>
       </SimpleGrid>
+
+      <Flex justifyContent="center" m="20px">
+        <Text
+          textStyle="sideNote"
+          textDecoration={saveState % 2 == 1 ? "underline" : "none"}
+          animation={
+            saveState == 0 ? `${savedAnimation()} 5s forwards` : "none"
+          }
+        >
+          {saveStateStr}
+        </Text>
+      </Flex>
     </Box>
   );
 };

@@ -1,12 +1,13 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
+import Loading from "./Loading";
 
 const withAuth = (WrappedComponent: any) => {
   const Wrapper = (props: any) => {
     const router = useRouter();
     const { user, loading } = useAuth();
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
       if (!loading) {
@@ -18,9 +19,8 @@ const withAuth = (WrappedComponent: any) => {
     }, [user, loading, router]);
 
     if (isLoading) {
-      return <div>Loading...</div>;
+      return <Loading/>;
     }
-
     return <WrappedComponent {...props} />;
   };
 

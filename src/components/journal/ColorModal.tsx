@@ -9,27 +9,44 @@ import {
   SimpleGrid,
   Text,
   Tooltip,
-  useTheme,
 } from "@chakra-ui/react";
 
 type ColorModalProps = {
   isOpen: boolean;
   onClose: () => void;
   setMood: (num: number) => void;
+  setSaveState: (num: number) => void;
 };
 
-const ColorModal = ({ isOpen, onClose, setMood }: ColorModalProps) => {
-  const theme = useTheme();
+const ColorModal = ({ isOpen, onClose, setMood, setSaveState }: ColorModalProps) => {
 
   const baseArr = Array.from(Array(6).keys());
 
   const handleMoodChange = (index: number) => {
     setMood(index + 1);
+    setSaveState(1);
     onClose();
   };
 
   const colorDesc = (index: number) => {
-    let str = "bruh";
+    index++;
+    let str = "";
+    
+    if (index == 1) {
+      str = "1- Terrible day."
+    } else if (index == 2) {
+      str = "2- Not a great day."
+    } else if (index == 3) {
+      str = "3- Average, slightly down day."
+    } else if (index == 4) {
+      str = "4- Average, slightly positive day."
+    } else if (index == 5) {
+      str = "5- Feeling good!"
+    } else if (index == 6) {
+      str = "6- Amazing day!"
+    }
+
+    
     return str;
   };
 
@@ -70,7 +87,7 @@ const ColorModal = ({ isOpen, onClose, setMood }: ColorModalProps) => {
                       boxShadow: "0 0 10px rgba(255, 255, 255, 0.5)",
                     }}
                   >
-                    <Text textStyle="modalSub" m={1}>{index + 1}</Text>
+                    <Text textStyle="modalSub" mx="10px" my="4px">{index + 1}</Text>
                   </Box>
                 </Tooltip>
               ))}
