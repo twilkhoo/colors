@@ -30,7 +30,7 @@ const Home = () => {
     <IndexBackground>
       <Flex justifyContent="center">
         <Box w="calc(min(1920px, 100%))" px={[25, null, 50, 100, 150, 200]}>
-          <Navbar />
+          <Navbar text="enter"/>
           <LeftText seconds={seconds} />
           <DecorativeBox />
           <Grid templateColumns={{ base: "1fr", xl: "60% 40%" }} gap="20px" my="100px">

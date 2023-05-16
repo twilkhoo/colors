@@ -1,34 +1,7 @@
 import { Box, Flex, keyframes, useTheme } from "@chakra-ui/react";
-import { motion } from "framer-motion";
-
-const colorAnimation = (theme: any) =>
-  keyframes`
-    0% { 
-      background: ${theme.colors.moods["100"]}; 
-    } 
-    16.6% { 
-      background: ${theme.colors.moods["200"]}; 
-    } 
-    33.3% { 
-      background: ${theme.colors.moods["300"]}; 
-    } 
-    50% { 
-      background: ${theme.colors.moods["400"]}; 
-    } 
-    66.6% { 
-      background: ${theme.colors.moods["500"]}; 
-    } 
-    83.3% { 
-      background: ${theme.colors.moods["600"]}; 
-    } 
-    100% { 
-      background: ${theme.colors.moods["100"]}; 
-    } 
-  `;
 
 const scaleAnimation = (index: number, theme: any) => {
-  
-  const rng = (index * 17 % 6 + 1) * 100;
+  const rng = (((index * 17) % 6) + 1) * 100;
 
   let topOffset = 0;
   let leftOffset = 0;
@@ -158,16 +131,18 @@ const DecorativeBox = () => {
                 height="280px"
                 borderWidth="5px"
                 borderColor="white"
-                animation={`${scaleAnimation(index, theme)} 30s ease-in-out infinite`}
+                animation={`${scaleAnimation(
+                  index,
+                  theme
+                )} 30s ease-in-out infinite`}
                 zIndex={30}
+                key={`DecorativeBox${index}`}
               />
             ))}
           </Box>
         </Flex>
       </Box>
     </Flex>
-
-
   );
 };
 

@@ -48,6 +48,9 @@ const customTheme = extendTheme({
       400: "#FEE28F",
       500: "#F99153",
       600: "#E2514A",
+    },
+    selection: {
+      100: "#42f572",
     }
   },
   textStyles: {
@@ -94,6 +97,30 @@ const customTheme = extendTheme({
     buttonText2: {
       fontWeight: 400,
       fontSize: ["20px", null, "20px", "20px", "24px", "24px" ],
+      lineHeight: "160%",
+      fontFamily: sen.style.fontFamily,
+      color: "white",
+    },
+
+    noteText: {
+      fontWeight: 400,
+      fontSize: ["8px", null, "8px", "12px", "16px", "16px" ],
+      lineHeight: "160%",
+      fontFamily: sen.style.fontFamily,
+      color: "white",
+    },
+
+    colorModal: {
+      fontWeight: 400,
+      fontSize: ["16px", null, "20px", "24px", "28px", "32px" ],
+      lineHeight: "160%",
+      fontFamily: sen.style.fontFamily,
+      color: "white",
+    },
+
+    modalSub: {
+      fontWeight: 400,
+      fontSize: "16px",
       lineHeight: "160%",
       fontFamily: sen.style.fontFamily,
       color: "white",

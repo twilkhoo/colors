@@ -2,10 +2,19 @@ import { Flex, Spacer, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import useAuth from "../hooks/useAuth";
 
-const Navbar = () => {
-  const { login } = useAuth();
-  const tempHandleGoogleSignIn = async () => {
+type NavbarProps = {
+  text: string;
+}
+
+const Navbar = ({text} : NavbarProps)  => {
+  const { login, logout } = useAuth();
+  
+  const handleGoogleSignIn = async () => {
     await login();
+  };
+
+  const handleGoogleSignOut = async () => {
+    await logout();
   };
 
   return (
@@ -24,7 +33,7 @@ const Navbar = () => {
       >
         <Text textStyle="navbar">chromatic;notes</Text>
         <Spacer />
-        <Text textStyle="navbar" _hover={{ cursor: "pointer" }} onClick={tempHandleGoogleSignIn}>enter</Text>
+        <Text textStyle="navbar" _hover={{ cursor: "pointer" }} onClick={text === "enter" ? handleGoogleSignIn : handleGoogleSignOut}>{text}</Text>
       </Flex>
     </motion.div>
 
