@@ -1,22 +1,21 @@
-import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Flex, } from "@chakra-ui/react";
 import withAuth from "@/components/withAuth";
-import useAuth from "@/hooks/useAuth";
+import IndexBackground from "@/components/index/IndexBackground";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import Create from "@/components/journal/Create";
 
 const Journal = () => {
-  const { user, logout } = useAuth();
-
-  const tempHandleSignOut = async () => {
-    await logout();
-  };
-
   return (
-    <Flex height="100vh" alignItems="center" justifyContent="center">
-      <Box>
-        <Heading>Journal</Heading>
-        <Text>Hello, {user?.displayName}</Text>
-        <Button onClick={tempHandleSignOut}>Sign out</Button>
-      </Box>
-    </Flex>
+    <IndexBackground>
+      <Flex justifyContent="center">
+        <Box w="calc(min(1920px, 100%))" px={[25, null, 50, 100, 150, 200]}>
+          <Navbar text="leave"/>
+          <Create/>
+        </Box>
+      </Flex>
+      <Footer/>
+    </IndexBackground>
   );
 };
 
