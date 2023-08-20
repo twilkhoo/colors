@@ -1,5 +1,4 @@
 import { Flex, Spacer, Text } from "@chakra-ui/react";
-import { motion } from "framer-motion";
 import useAuth from "../hooks/useAuth";
 
 const Footer = () => {
@@ -9,14 +8,13 @@ const Footer = () => {
   };
 
   return (
-
       <Flex
         py="20px"
         borderTop="1px"
         borderColor="white"
         justifyContent="center"
       >
-        <Text textStyle="footer">footer</Text>
+        <Text textStyle="footer">Made with &lt;3</Text>
       </Flex>
 
   );

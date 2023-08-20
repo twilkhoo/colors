@@ -1,8 +1,10 @@
 import { extendTheme } from "@chakra-ui/react";
-import { Inter, Sen } from "next/font/google"
+import { Comfortaa, Inter, Oxygen, Sen } from "next/font/google"
 
 const sen = Sen({ subsets: ["latin"], weight: "400" });
 const inter = Inter({ subsets: ["latin"], weight: "400" });
+const oxygen = Oxygen({ subsets: ["latin"], weight: "400" });
+const comfortaa = Comfortaa({ subsets: ["latin"], weight: "400" });
 
 const customTheme = extendTheme({
   styles: {
@@ -53,7 +55,7 @@ const customTheme = extendTheme({
       100: "#42f572",
     },
     warning: {
-      100: "#fc5a44",
+      100: "#ffd1cf",
     },
   },
   textStyles: {
@@ -68,7 +70,7 @@ const customTheme = extendTheme({
       fontWeight: 400,
       fontSize: ["24px", null, "24px", "36px", "44px" ],
       lineHeight: "160%",
-      fontFamily: sen.style.fontFamily,
+      fontFamily: comfortaa.style.fontFamily,
       color: "white",
     },
 
@@ -84,9 +86,18 @@ const customTheme = extendTheme({
       fontWeight: 400,
       fontSize: ["20px", null, "20px", "24px", "30px", "32px" ],
       lineHeight: "160%",
+      fontFamily: comfortaa.style.fontFamily,
+      color: "white",
+    },
+
+    homeText4: {
+      fontWeight: 900,
+      fontSize: ["20px", null, "20px", "24px", "30px", "32px" ],
+      lineHeight: "160%",
       fontFamily: sen.style.fontFamily,
       color: "white",
     },
+
 
 
     buttonText1: {

@@ -163,6 +163,7 @@ const Create = () => {
         <Text
           textStyle="sideNote"
           textDecoration={saveState % 2 == 1 ? "underline" : "none"}
+          color={saveState % 2 == 1 ? "warning.100" : "white"}
           animation={
             saveState == 0 ? `${savedAnimation()} 5s forwards` : "none"
           }

@@ -28,8 +28,8 @@ const Navbar = ({text} : NavbarProps)  => {
       }}
     >
       <Flex
-        
-        py="50px"
+        h="100px"
+        align="center"
       >
         <Text textStyle="navbar">chromatic;notes</Text>
         <Spacer />

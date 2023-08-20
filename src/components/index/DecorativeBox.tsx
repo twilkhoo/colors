@@ -6,26 +6,27 @@ const scaleAnimation = (index: number, theme: any) => {
   let topOffset = 0;
   let leftOffset = 0;
   let opacity = 0;
+  const kOffset = 2; // 280 => 4, 210 => 3, 140 => 2, etc.
 
   if (index >= 1 && index <= 4) {
-    topOffset = -80;
-    leftOffset = 40 * (index - 1);
+    topOffset = kOffset * -20;
+    leftOffset = kOffset * 10 * (index - 1);
   }
   if (index >= 5 && index <= 11) {
-    topOffset = -40;
-    leftOffset = 40 * (index - 8);
+    topOffset = kOffset * -10;
+    leftOffset = kOffset * 10 * (index - 8);
   }
   if (index >= 12 && index <= 18) {
     topOffset = 0;
-    leftOffset = 40 * (index - 15);
+    leftOffset = kOffset * 10 * (index - 15);
   }
   if (index >= 19 && index <= 25) {
-    topOffset = 40;
-    leftOffset = 40 * (index - 22);
+    topOffset = kOffset * 10;
+    leftOffset = kOffset * 10 * (index - 22);
   }
   if (index >= 26 && index <= 30) {
-    topOffset = 80;
-    leftOffset = 40 * (index - 29);
+    topOffset = kOffset * 20;
+    leftOffset = kOffset * 10 * (index - 29);
   }
   if (index == 15) opacity = 1;
 
@@ -86,7 +87,7 @@ const scaleAnimation = (index: number, theme: any) => {
       top: ${topOffset}px;
       left: ${leftOffset}px;
       opacity: 1;
-      border-radius: 80px;
+      border-radius: 40px;
       background: ${theme.colors.moods[`${rng}`]};
     }
     80% {
@@ -94,7 +95,7 @@ const scaleAnimation = (index: number, theme: any) => {
       top: ${topOffset}px;
       left: ${leftOffset}px;
       opacity: 1;
-      border-radius: 80px;
+      border-radius: 40px;
       background: ${theme.colors.moods[`${rng}`]};
     }
     90% {
@@ -120,15 +121,15 @@ const DecorativeBox = () => {
   const baseArr = Array.from(Array(31).keys());
 
   return (
-    <Flex justifyContent="center">
+    <Flex justifyContent="center" my="100px">
       <Box>
         <Flex justifyContent="center" position="relative">
-          <Box w="280px" h="280px">
+          <Box w="140px" h="140px">
             {baseArr.map((index) => (
               <Box
                 position="absolute"
-                width="280px"
-                height="280px"
+                width="140px"
+                height="140px"
                 borderWidth="5px"
                 borderColor="white"
                 animation={`${scaleAnimation(
