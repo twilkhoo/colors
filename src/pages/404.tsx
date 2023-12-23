@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
-import IndexBackground from "@/components/index/IndexBackground";
+import IndexBackground from "@/components/background/IndexBackground";
 import { useRouter } from "next/router";
 
 const Home = () => {

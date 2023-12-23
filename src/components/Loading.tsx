@@ -1,5 +1,5 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
-import IndexBackground from "@/components/index/IndexBackground";
+import IndexBackground from "@/components/background/IndexBackground";
 
 const Loading = () => {
   return (

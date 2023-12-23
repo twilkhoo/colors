@@ -6,7 +6,6 @@ import {
   GridItem,
   Image,
   Text,
-  useDisclosure,
 } from "@chakra-ui/react";
 import useAuth from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
@@ -41,8 +40,6 @@ const Hero = () => {
     <Flex h={`calc(100vh - 100px)`}
     justifyContent="center"
     alignItems="center">
-
-
         <Grid
           templateColumns={{ base: "1fr", xl: "60% 40%" }}
           gap="20px"
@@ -53,7 +50,7 @@ const Hero = () => {
                 <Text textStyle="homeText1">{quote}</Text>
               </FadingText>
               <FadingText delay={2}>
-                <Text textStyle="homeText2">; {author ? author : "unknown"}</Text>
+                <Text textStyle="homeText2">- {author ? author : "unknown"}</Text>
               </FadingText>
               <FadingText delay={3}>
                 <Text textStyle="homeText3" pt="50px">

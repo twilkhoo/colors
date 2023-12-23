@@ -93,10 +93,11 @@ const ColorModal = ({ isOpen, onClose, setMood, setSaveState }: ColorModalProps)
               ))}
             </SimpleGrid>
           </Flex>
-          <Text textStyle="colorModal">
-            select a color by clicking one above.
-          </Text>
-          <Text textStyle="colorModal">red implies happier days.</Text>
+          <Flex justifyContent="center">
+            <Text textStyle="colorModal">
+              Select a color by clicking one above, red implies happier days.
+            </Text>
+          </Flex>
         </ModalBody>
       </ModalContent>
     </Modal>

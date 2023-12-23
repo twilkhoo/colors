@@ -14,6 +14,7 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import useAuth from "@/hooks/useAuth";
 
+// The fade-out animation for the saving changes/saved note.
 const savedAnimation = () =>
   keyframes`
     0% { 
@@ -36,6 +37,7 @@ const Create = () => {
   const [mood, setMood] = useState(0);
   const [note, setNote] = useState("");
 
+  // State representing what the saving note should say.
   const [saveState, setSaveState] = useState(0); // 0 => saved, 1 => unsaved changes, 2 => saving..., 3 => error
   let saveStateStr = "";
   if (saveState == 0) {
@@ -71,6 +73,7 @@ const Create = () => {
     }
   };
 
+  // Initial function to read today's data.
   const readTodayDoc = async () => {
     setFetchingCreate(true);
     try {
@@ -88,6 +91,7 @@ const Create = () => {
     }
   };
 
+  // Invoking the initial read, doing it upon user auth.
   useEffect(() => {
     if (user) readTodayDoc();
   }, [user]);
@@ -98,16 +102,7 @@ const Create = () => {
     </Flex>
   ) : (
     <Box my="50px">
-      <Flex alignItems="center" justifyContent="center" my="40px">
-        <Text textStyle="homeText1" mr="20px">
-          today
-        </Text>
-        <Button variant="outlined" px="20px" py="30px">
-          <Text textStyle="homeText1" onClick={onSave}>
-            save
-          </Text>
-        </Button>
-      </Flex>
+      <Text textStyle="homeText1">today</Text>
       <SimpleGrid columns={[1, null, 1, 1, 2]} spacing="20px">
         <Flex justifyContent={["center", null, "center", "center", "right"]}>
           <Box
@@ -158,6 +153,14 @@ const Create = () => {
           />
         </Flex>
       </SimpleGrid>
+
+      <Flex justifyContent="center" m="20px">
+        <Button variant="outlined" px="20px" py="30px">
+          <Text textStyle="buttonText1" onClick={onSave}>
+            save
+          </Text>
+        </Button>
+      </Flex>
 
       <Flex justifyContent="center" m="20px">
         <Text

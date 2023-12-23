@@ -34,6 +34,7 @@ const customTheme = extendTheme({
     md: "768px",
     lg: "992px",
     xl: "1280px",
+    twoxl: "1536px",
   },
   config: {
     initialColorMode: "light",
@@ -126,7 +127,7 @@ const customTheme = extendTheme({
 
     colorModal: {
       fontWeight: 400,
-      fontSize: ["16px", null, "20px", "24px", "28px", "32px" ],
+      fontSize: ["14px", null, "14px", "16px", "20px", "24px" ],
       lineHeight: "160%",
       fontFamily: sen.style.fontFamily,
       color: "white",
@@ -148,13 +149,32 @@ const customTheme = extendTheme({
       color: "white",
     },
 
+    selectText: {
+      fontWeight: 400,
+      fontSize: "16px",
+      lineHeight: "160%",
+      fontFamily: sen.style.fontFamily,
+      color: "#fff",
+      focus: {
+        color:"000",
+      },
+    },
+
+    emptyText: {
+      fontWeight: 400,
+      fontSize: "16px",
+      lineHeight: "160%",
+      fontFamily: sen.style.fontFamily,
+      color: "#ffffff88",
+    },
+
     footer: {
       fontWeight: 400,
       fontSize: "16px",
       lineHeight: "160%",
       fontFamily: sen.style.fontFamily,
       color: "white",
-    }
+    },
   },
 
   components: {
