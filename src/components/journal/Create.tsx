@@ -13,6 +13,15 @@ import { useEffect, useState } from "react";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import useAuth from "@/hooks/useAuth";
+import { UserDoc } from "../withAuth";
+import { convertDateObjToDateStr, convertDateStrToDateObj, convertDateStrToNormalDate } from "./dateFuncs";
+
+type CreateProps = {
+  userDocs: Map<string, UserDoc>;
+  refreshUserDocsState: () => void;
+  dateStr: string;
+  editPastDate: (newDateStr: string) => void;
+};
 
 // The fade-out animation for the saving changes/saved note.
 const savedAnimation = () =>
@@ -28,14 +37,19 @@ const savedAnimation = () =>
     } 
   `;
 
-const Create = () => {
+const Create = ({userDocs, refreshUserDocsState, dateStr, editPastDate}: CreateProps) => {
   const [fetchingCreate, setFetchingCreate] = useState(true);
-
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { user } = useAuth();
-
   const [mood, setMood] = useState(0);
   const [note, setNote] = useState("");
+
+  const todayDate = new Date();
+  const todayDateStr = convertDateObjToDateStr(todayDate);
+  const specifiedDate = convertDateStrToDateObj(dateStr);
+  const textDateStr = (todayDate.toDateString() === specifiedDate.toDateString()) ? "today" : convertDateStrToNormalDate(dateStr);
+
+  const docPath = doc(db, `users/${user?.uid}/colors/${dateStr}`);
 
   // State representing what the saving note should say.
   const [saveState, setSaveState] = useState(0); // 0 => saved, 1 => unsaved changes, 2 => saving..., 3 => error
@@ -51,13 +65,6 @@ const Create = () => {
       "error while saving, please save the note, refresh the page and try again.";
   }
 
-  const date = new Date();
-  let dateStr =
-    `${date.getFullYear()}` +
-    `${date.getMonth() + 1}`.padStart(2, "0") +
-    `${date.getDate()}`.padStart(2, "0");
-  const docPath = doc(db, `users/${user?.uid}/colors/${dateStr}`);
-
   const onSave = async () => {
     const docData = {
       mood: mood,
@@ -67,6 +74,7 @@ const Create = () => {
       setSaveState(2);
       await setDoc(docPath, docData);
       setSaveState(0);
+      refreshUserDocsState();
     } catch (err) {
       setSaveState(3);
       console.log(`Error while saving to firebase, ${err}.`);
@@ -74,35 +82,33 @@ const Create = () => {
   };
 
   // Initial function to read today's data.
-  const readTodayDoc = async () => {
-    setFetchingCreate(true);
-    try {
-      const curDoc = await getDoc(docPath);
-      if (curDoc.exists()) {
-        setMood(curDoc.data().mood);
-        setNote(curDoc.data().note);
-      } else {
-        console.log("Note has not been added for today yet.");
-      }
-      setFetchingCreate(false);
-    } catch (err) {
-      console.log(`Some other error occured while fetching, ${err}.`);
-      setFetchingCreate(false);
+  const readTodayDoc = () => {
+    const curDoc = userDocs.get(dateStr);
+    if (curDoc) {
+      setMood(curDoc.mood);
+      setNote(curDoc.note);
+    } else {
+      setMood(0);
+      setNote("");
+      console.log("Note has not been added for today yet.");
     }
   };
 
-  // Invoking the initial read, doing it upon user auth.
-  useEffect(() => {
-    if (user) readTodayDoc();
-  }, [user]);
+  const goBackToToday = () => {
+    editPastDate(todayDateStr);
+  }
 
-  return fetchingCreate ? (
-    <Flex justifyContent="center" m="20px">
-      <Text textStyle="sideNote">fetching today's note...</Text>
-    </Flex>
-  ) : (
+  // Invoking the initial read.
+  useEffect(() => {
+    readTodayDoc();
+  }, [userDocs, dateStr]);
+
+  return (
     <Box my="50px">
-      <Text textStyle="homeText1">today</Text>
+      <Flex alignItems="flex-end">
+        <Text textStyle="homeText1">{textDateStr}</Text>
+        {(textDateStr !== "today") && <Text textStyle="backToToday" ml="20px" mb="10px" onClick={() => goBackToToday()} _hover={{cursor: "pointer"}}>{"< today"}</Text>}
+      </Flex>
       <SimpleGrid columns={[1, null, 1, 1, 2]} spacing="20px">
         <Flex justifyContent={["center", null, "center", "center", "right"]}>
           <Box

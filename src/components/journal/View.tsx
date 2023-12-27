@@ -1,15 +1,61 @@
-import { Box, Flex, Select, Text } from "@chakra-ui/react";
-import { useState } from "react";
+import { Box, Button, Flex, Select, Text } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import MonthView from "./MonthView";
 const { getDaysInMonth, startOfMonth, format } = require("date-fns");
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { db } from "@/config/firebase";
+import useAuth from "@/hooks/useAuth";
+import { UserDoc } from "../withAuth";
 
-const View = () => {
+type ViewProps = {
+  userDocs: Map<string, UserDoc>;
+  editPastDate: (newDateStr: string) => void;
+};
+
+const View = ({userDocs, editPastDate}: ViewProps) => {
   const [selectedMonth, setSelectedMonth] = useState("");
+  const [selectedYear, setSelectedYear] = useState("");
+  const [years, setYears] = useState<number[]>([]);
+
   const handleMonthChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
     setSelectedMonth(e.target.value);
-  const [selectedYear, setSelectedYear] = useState("");
   const handleYearChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
     setSelectedYear(e.target.value);
+
+  // Using TypeScript's Map object
+  const numToMonth: Map<number, string> = new Map<number, string>([
+    [-1, "full year"],
+    [0, "jan"],
+    [1, "feb"],
+    [2, "mar"],
+    [3, "apr"],
+    [4, "may"],
+    [5, "jun"],
+    [6, "jul"],
+    [7, "aug"],
+    [8, "sep"],
+    [9, "oct"],
+    [10, "nov"],
+    [11, "dec"],
+  ]);
+
+  // Find the earliest year recorded.
+  useEffect(() => {
+    const existingYears: Set<number> = new Set();
+    userDocs.forEach((_, id) => {
+      existingYears.add(Number(id.substring(0, 4)));
+    })
+    const currentYear = new Date().getFullYear();
+    existingYears.add(currentYear)
+    const earliestYear: number = Math.min(...Array.from(existingYears));
+
+    let yearsArray: number[] = [];
+    for (let i = earliestYear; i <= currentYear; i++) {
+      yearsArray.push(i);
+    }
+    console.log(yearsArray);
+    setYears(yearsArray);
+  }, [userDocs])
 
   return (
     <Box my="50px">
@@ -28,18 +74,11 @@ const View = () => {
             value={selectedYear}
             m="10px"
           >
-            <option value="2023" style={{ color: "black" }}>
-              2023
-            </option>
-            <option value="2022" style={{ color: "black" }}>
-              2022
-            </option>
-            <option value="2021" style={{ color: "black" }}>
-              2021
-            </option>
-            <option value="2020" style={{ color: "black" }}>
-              2020
-            </option>
+            {years.map((year) => (
+              <option key={year} value={year} style={{ color: 'black' }}>
+                {year}
+              </option>
+            ))}
           </Select>
 
           <Select
@@ -49,54 +88,14 @@ const View = () => {
             value={selectedMonth}
             m="10px"
           >
-            <option value="-1" style={{ color: "black" }}>
-              full year
-            </option>
-            <option value="0" style={{ color: "black" }}>
-              jan
-            </option>
-            <option value="1" style={{ color: "black" }}>
-              feb
-            </option>
-            <option value="2" style={{ color: "black" }}>
-              mar
-            </option>
-            <option value="3" style={{ color: "black" }}>
-              apr
-            </option>
-            <option value="4" style={{ color: "black" }}>
-              may
-            </option>
-            <option value="5" style={{ color: "black" }}>
-              jun
-            </option>
-            <option value="6" style={{ color: "black" }}>
-              jul
-            </option>
-            <option value="7" style={{ color: "black" }}>
-              aug
-            </option>
-            <option value="8" style={{ color: "black" }}>
-              sep
-            </option>
-            <option value="9" style={{ color: "black" }}>
-              oct
-            </option>
-            <option value="10" style={{ color: "black" }}>
-              nov
-            </option>
-            <option value="11" style={{ color: "black" }}>
-              dec
-            </option>
+            {Array.from(numToMonth.keys()).map((idx) => (
+              <option key={idx} value={idx} style={{ color: 'black' }}>
+                {numToMonth.get(idx)}
+              </option>
+            ))}
           </Select>
-
-
       </Flex>
-
-
-      <MonthView month={(selectedMonth)} year={(selectedYear)}/>
-
-
+      <MonthView month={(selectedMonth)} year={(selectedYear)} userDocs={userDocs} editPastDate={editPastDate} />
     </Box>
   );
 };

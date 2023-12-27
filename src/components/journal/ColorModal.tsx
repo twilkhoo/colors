@@ -33,17 +33,17 @@ const ColorModal = ({ isOpen, onClose, setMood, setSaveState }: ColorModalProps)
     let str = "";
     
     if (index == 1) {
-      str = "1- Terrible day."
+      str = "terrible day"
     } else if (index == 2) {
-      str = "2- Not a great day."
+      str = "not a great day."
     } else if (index == 3) {
-      str = "3- Average, slightly down day."
+      str = "average, slightly down day"
     } else if (index == 4) {
-      str = "4- Average, slightly positive day."
+      str = "average, slightly positive day"
     } else if (index == 5) {
-      str = "5- Feeling good!"
+      str = "feeling great"
     } else if (index == 6) {
-      str = "6- Amazing day!"
+      str = "amazing day"
     }
 
     
@@ -92,11 +92,6 @@ const ColorModal = ({ isOpen, onClose, setMood, setSaveState }: ColorModalProps)
                 </Tooltip>
               ))}
             </SimpleGrid>
-          </Flex>
-          <Flex justifyContent="center">
-            <Text textStyle="colorModal">
-              Select a color by clicking one above, red implies happier days.
-            </Text>
           </Flex>
         </ModalBody>
       </ModalContent>

@@ -51,6 +51,7 @@ const customTheme = extendTheme({
       400: "#FEE28F",
       500: "#F99153",
       600: "#E2514A",
+      700: "#BBBBBBAA"
     },
     selection: {
       100: "#42f572",
@@ -98,8 +99,6 @@ const customTheme = extendTheme({
       fontFamily: sen.style.fontFamily,
       color: "white",
     },
-
-
 
     buttonText1: {
       fontWeight: 400,
@@ -175,6 +174,15 @@ const customTheme = extendTheme({
       fontFamily: sen.style.fontFamily,
       color: "white",
     },
+
+    backToToday: {
+      fontWeight: 400,
+      fontSize: ["20px", null, "20px", "24px" ],
+      lineHeight: "140%",
+      fontFamily: sen.style.fontFamily,
+      color: "white",
+    },
+
   },
 
   components: {
