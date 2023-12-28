@@ -122,7 +122,7 @@ const Create = ({
           <Text
             textStyle="backToToday"
             ml="20px"
-            mb="10px"
+            mb="15px"
             onClick={() => goBackToToday()}
             _hover={{ cursor: "pointer" }}
           >

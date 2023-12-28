@@ -180,7 +180,6 @@ const customTheme = extendTheme({
       fontFamily: sen.style.fontFamily,
       color: "white",
     },
-
   },
 
   components: {
