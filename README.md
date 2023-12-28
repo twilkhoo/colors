@@ -5,7 +5,7 @@ A responsive realtime journaling web app made with Firebase 9 Modular API (Auth 
 Visit [https://chromatic-notes.vercel.app/](https://chromatic-notes.vercel.app/) to login with Firebase and record a mood and note for today, or any previous day.
 
 ## Demo
-
+https://github.com/twilkhoo/colors/assets/30396273/4baa50d8-68ad-49bf-afee-c5b3d0a77054
 
 ## Getting Started Locally
 After `git clone` ing, install dependencies from npm: ```npm i```
