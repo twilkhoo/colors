@@ -106,6 +106,7 @@ const MonthView = ({ month, year, userDocs, editPastDate }: MonthViewProps) => {
                 label={convertDateStrToNormalDate(
                   convertIndexToDateStr(Number(year), Number(month), index)
                 )}
+                key={`Tooltip ${index}`}
               >
                 <Box
                   position="absolute"

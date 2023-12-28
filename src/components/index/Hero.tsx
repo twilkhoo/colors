@@ -68,7 +68,7 @@ const Hero = () => {
         </GridItem>
         <GridItem>
           <FadingText delay={4}>
-            <Image src="/handnote.png" w="calc(min(500px, 100%))" />
+            <Image src="/handnote.png" w="calc(min(500px, 100%))" alt="Illustration of notetaking" />
           </FadingText>
         </GridItem>
       </Grid>
