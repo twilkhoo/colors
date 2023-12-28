@@ -37,46 +37,41 @@ const Hero = () => {
   }, []);
 
   return (
-    <Flex h={`calc(100vh - 100px)`}
-    justifyContent="center"
-    alignItems="center">
-        <Grid
-          templateColumns={{ base: "1fr", xl: "60% 40%" }}
-          gap="20px"
-        >
-          <GridItem>
-            <Box>
-              <FadingText delay={1}>
-                <Text textStyle="homeText1">{quote}</Text>
-              </FadingText>
-              <FadingText delay={2}>
-                <Text textStyle="homeText2">- {author ? author : "unknown"}</Text>
-              </FadingText>
-              <FadingText delay={3}>
-                <Text textStyle="homeText3" pt="50px">
-                  {" "}
-                  ready to journal?{" "}
-                </Text>
-              </FadingText>
-              <FadingText delay={4}>
-                <Button
-                  variant="outlined"
-                  onClick={tempHandleGoogleSignIn}
-                  px="50px"
-                  py="30px"
-                  mt="20px"
-                >
-                  <Text textStyle="buttonText1">enter</Text>
-                </Button>
-              </FadingText>
-            </Box>
-          </GridItem>
-          <GridItem>
-            <FadingText delay={4}>
-              <Image src="/handnote.png" w="calc(min(500px, 100%))" />
+    <Flex h={`calc(100vh - 100px)`} justifyContent="center" alignItems="center">
+      <Grid templateColumns={{ base: "1fr", xl: "60% 40%" }} gap="20px">
+        <GridItem>
+          <Box>
+            <FadingText delay={1}>
+              <Text textStyle="homeText1">{quote}</Text>
             </FadingText>
-          </GridItem>
-        </Grid>
+            <FadingText delay={2}>
+              <Text textStyle="homeText2">- {author ? author : "unknown"}</Text>
+            </FadingText>
+            <FadingText delay={3}>
+              <Text textStyle="homeText3" pt="50px">
+                {" "}
+                ready to journal?{" "}
+              </Text>
+            </FadingText>
+            <FadingText delay={4}>
+              <Button
+                variant="outlined"
+                onClick={tempHandleGoogleSignIn}
+                px="50px"
+                py="30px"
+                mt="20px"
+              >
+                <Text textStyle="buttonText1">enter</Text>
+              </Button>
+            </FadingText>
+          </Box>
+        </GridItem>
+        <GridItem>
+          <FadingText delay={4}>
+            <Image src="/handnote.png" w="calc(min(500px, 100%))" />
+          </FadingText>
+        </GridItem>
+      </Grid>
     </Flex>
   );
 };

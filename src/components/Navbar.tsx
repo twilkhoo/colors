@@ -6,13 +6,12 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-  SliderMark,
   Box,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import useAuth from "../hooks/useAuth";
-import { MdOutlineWbSunny  } from 'react-icons/md'; // Import your desired icon
-import { useBrightness } from '../context/BrightnessProvider';
+import { MdOutlineWbSunny } from "react-icons/md"; // Import your desired icon
+import { useBrightness } from "../context/BrightnessProvider";
 
 type NavbarProps = {
   text: string;
@@ -49,12 +48,16 @@ const Navbar = ({ text }: NavbarProps) => {
         <Text textStyle="navbar">chromatic;notes</Text>
         <Spacer />
         <Flex w="100px" mr="40px" justifyContent="center" alignItems="center">
-          <Slider aria-label="theme-slider" value={brightness} onChange={handleBrightnessChange}>
+          <Slider
+            aria-label="theme-slider"
+            value={brightness}
+            onChange={handleBrightnessChange}
+          >
             <SliderTrack bg="#ffffff55">
               <SliderFilledTrack bg="white" />
             </SliderTrack>
             <SliderThumb boxSize={6}>
-              <Box color='#555' as={MdOutlineWbSunny} />
+              <Box color="#555" as={MdOutlineWbSunny} />
             </SliderThumb>
           </Slider>
         </Flex>

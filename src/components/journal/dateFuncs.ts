@@ -12,7 +12,7 @@ export function convertDateStrToNormalDate(dateStr: string): string {
 
   const monthIndex = parseInt(month) - 1;
   const monthName = months[monthIndex];
-  
+
   return `${monthName} ${parseInt(day)} ${year}`;
 }
 
@@ -25,14 +25,14 @@ export function convertDateStrToDateObj(dateStr: string): Date {
 
 export function convertDateObjToDateStr(date: Date): string {
   return `${date.getFullYear()}` +
-  `${date.getMonth() + 1}`.padStart(2, "0") +
-  `${date.getDate()}`.padStart(2, "0");
+    `${date.getMonth() + 1}`.padStart(2, "0") +
+    `${date.getDate()}`.padStart(2, "0");
 }
 
 
 export function convertIndexToDateStr(year: number, month: number, index: number): string {
-  if (month != -1){
-    return `${year}${`${Number(month)+1}`.padStart(2, "0")}${`${index+1}`.padStart(2, "0")}`;
+  if (month != -1) {
+    return `${year}${`${Number(month) + 1}`.padStart(2, "0")}${`${index + 1}`.padStart(2, "0")}`;
   }
 
   // Returning based on full year.

@@ -10,11 +10,15 @@ import {
 } from "@chakra-ui/react";
 import ColorModal from "./ColorModal";
 import { useEffect, useState } from "react";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import useAuth from "@/hooks/useAuth";
 import { UserDoc } from "../withAuth";
-import { convertDateObjToDateStr, convertDateStrToDateObj, convertDateStrToNormalDate } from "./dateFuncs";
+import {
+  convertDateObjToDateStr,
+  convertDateStrToDateObj,
+  convertDateStrToNormalDate,
+} from "./dateFuncs";
 
 type CreateProps = {
   userDocs: Map<string, UserDoc>;
@@ -37,7 +41,12 @@ const savedAnimation = () =>
     } 
   `;
 
-const Create = ({userDocs, refreshUserDocsState, dateStr, editPastDate}: CreateProps) => {
+const Create = ({
+  userDocs,
+  refreshUserDocsState,
+  dateStr,
+  editPastDate,
+}: CreateProps) => {
   const [fetchingCreate, setFetchingCreate] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { user } = useAuth();
@@ -47,7 +56,10 @@ const Create = ({userDocs, refreshUserDocsState, dateStr, editPastDate}: CreateP
   const todayDate = new Date();
   const todayDateStr = convertDateObjToDateStr(todayDate);
   const specifiedDate = convertDateStrToDateObj(dateStr);
-  const textDateStr = (todayDate.toDateString() === specifiedDate.toDateString()) ? "today" : convertDateStrToNormalDate(dateStr);
+  const textDateStr =
+    todayDate.toDateString() === specifiedDate.toDateString()
+      ? "today"
+      : convertDateStrToNormalDate(dateStr);
 
   const docPath = doc(db, `users/${user?.uid}/colors/${dateStr}`);
 
@@ -77,7 +89,7 @@ const Create = ({userDocs, refreshUserDocsState, dateStr, editPastDate}: CreateP
       refreshUserDocsState();
     } catch (err) {
       setSaveState(3);
-      console.log(`Error while saving to firebase, ${err}.`);
+      console.error(`Error while saving to firebase, ${err}.`);
     }
   };
 
@@ -90,13 +102,12 @@ const Create = ({userDocs, refreshUserDocsState, dateStr, editPastDate}: CreateP
     } else {
       setMood(0);
       setNote("");
-      console.log("Note has not been added for today yet.");
     }
   };
 
   const goBackToToday = () => {
     editPastDate(todayDateStr);
-  }
+  };
 
   // Invoking the initial read.
   useEffect(() => {
@@ -107,7 +118,17 @@ const Create = ({userDocs, refreshUserDocsState, dateStr, editPastDate}: CreateP
     <Box my="50px">
       <Flex alignItems="flex-end">
         <Text textStyle="homeText1">{textDateStr}</Text>
-        {(textDateStr !== "today") && <Text textStyle="backToToday" ml="20px" mb="10px" onClick={() => goBackToToday()} _hover={{cursor: "pointer"}}>{"< today"}</Text>}
+        {textDateStr !== "today" && (
+          <Text
+            textStyle="backToToday"
+            ml="20px"
+            mb="10px"
+            onClick={() => goBackToToday()}
+            _hover={{ cursor: "pointer" }}
+          >
+            {"< today"}
+          </Text>
+        )}
       </Flex>
       <SimpleGrid columns={[1, null, 1, 1, 2]} spacing="20px">
         <Flex justifyContent={["center", null, "center", "center", "right"]}>

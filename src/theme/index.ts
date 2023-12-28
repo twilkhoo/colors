@@ -1,9 +1,7 @@
 import { extendTheme } from "@chakra-ui/react";
-import { Comfortaa, Inter, Oxygen, Sen } from "next/font/google"
+import { Comfortaa, Sen } from "next/font/google"
 
 const sen = Sen({ subsets: ["latin"], weight: "400" });
-const inter = Inter({ subsets: ["latin"], weight: "400" });
-const oxygen = Oxygen({ subsets: ["latin"], weight: "400" });
 const comfortaa = Comfortaa({ subsets: ["latin"], weight: "400" });
 
 const customTheme = extendTheme({
@@ -63,14 +61,14 @@ const customTheme = extendTheme({
   textStyles: {
     navbar: {
       fontWeight: 400,
-      fontSize: ["20px", null, "20px", "24px" ],
+      fontSize: ["20px", null, "20px", "24px"],
       lineHeight: "140%",
       fontFamily: sen.style.fontFamily,
       color: "white",
     },
     homeText1: {
       fontWeight: 400,
-      fontSize: ["24px", null, "24px", "36px", "44px" ],
+      fontSize: ["24px", null, "24px", "36px", "44px"],
       lineHeight: "160%",
       fontFamily: comfortaa.style.fontFamily,
       color: "white",
@@ -86,7 +84,7 @@ const customTheme = extendTheme({
 
     homeText3: {
       fontWeight: 400,
-      fontSize: ["20px", null, "20px", "24px", "30px", "32px" ],
+      fontSize: ["20px", null, "20px", "24px", "30px", "32px"],
       lineHeight: "160%",
       fontFamily: comfortaa.style.fontFamily,
       color: "white",
@@ -94,7 +92,7 @@ const customTheme = extendTheme({
 
     homeText4: {
       fontWeight: 900,
-      fontSize: ["20px", null, "20px", "24px", "30px", "32px" ],
+      fontSize: ["20px", null, "20px", "24px", "30px", "32px"],
       lineHeight: "160%",
       fontFamily: sen.style.fontFamily,
       color: "white",
@@ -102,7 +100,7 @@ const customTheme = extendTheme({
 
     buttonText1: {
       fontWeight: 400,
-      fontSize:  ["20px", null, "20px", "20px", "24px", "24px" ],
+      fontSize: ["20px", null, "20px", "20px", "24px", "24px"],
       lineHeight: "160%",
       fontFamily: sen.style.fontFamily,
       color: "white",
@@ -110,7 +108,7 @@ const customTheme = extendTheme({
 
     buttonText2: {
       fontWeight: 400,
-      fontSize: ["20px", null, "20px", "20px", "24px", "24px" ],
+      fontSize: ["20px", null, "20px", "20px", "24px", "24px"],
       lineHeight: "160%",
       fontFamily: sen.style.fontFamily,
       color: "white",
@@ -118,7 +116,7 @@ const customTheme = extendTheme({
 
     noteText: {
       fontWeight: 400,
-      fontSize: ["8px", null, "8px", "12px", "16px", "16px" ],
+      fontSize: ["8px", null, "8px", "12px", "16px", "16px"],
       lineHeight: "160%",
       fontFamily: sen.style.fontFamily,
       color: "white",
@@ -126,7 +124,7 @@ const customTheme = extendTheme({
 
     colorModal: {
       fontWeight: 400,
-      fontSize: ["14px", null, "14px", "16px", "20px", "24px" ],
+      fontSize: ["14px", null, "14px", "16px", "20px", "24px"],
       lineHeight: "160%",
       fontFamily: sen.style.fontFamily,
       color: "white",
@@ -155,7 +153,7 @@ const customTheme = extendTheme({
       fontFamily: sen.style.fontFamily,
       color: "#fff",
       focus: {
-        color:"000",
+        color: "000",
       },
     },
 
@@ -177,7 +175,7 @@ const customTheme = extendTheme({
 
     backToToday: {
       fontWeight: 400,
-      fontSize: ["20px", null, "20px", "24px" ],
+      fontSize: ["20px", null, "20px", "24px"],
       lineHeight: "140%",
       fontFamily: sen.style.fontFamily,
       color: "white",

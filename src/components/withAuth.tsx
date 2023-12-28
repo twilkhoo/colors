@@ -8,7 +8,7 @@ import { db } from "@/config/firebase";
 export type UserDoc = {
   mood: number;
   note: string;
-}
+};
 
 const withAuth = (WrappedComponent: any) => {
   const Wrapper = (props: any) => {
@@ -31,30 +31,40 @@ const withAuth = (WrappedComponent: any) => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          console.log("trying to fetch all docs");
-          const querySnapshot = await getDocs(collection(db, `users/${user?.uid}/colors`));
+          const querySnapshot = await getDocs(
+            collection(db, `users/${user?.uid}/colors`)
+          );
           const userDocsData = new Map<string, UserDoc>(); // Create a new Map
 
           querySnapshot.docs.forEach((doc) => {
-            userDocsData.set(doc.id, { mood: doc.data().mood, note: doc.data().note }); // Add to the Map
+            userDocsData.set(doc.id, {
+              mood: doc.data().mood,
+              note: doc.data().note,
+            }); // Add to the Map
           });
           setUserDocs(userDocsData); // Set the Map as the state
           setIsLoadingData(false);
         } catch (error) {
-          console.error('Error fetching data:', error);
+          console.error("Error fetching data:", error);
         }
       };
       fetchData(); // Call the async function
     }, [user, refreshUserDocs]);
 
     if (isLoading || isLoadingData) {
-      return <Loading/>;
+      return <Loading />;
     }
 
     const refreshUserDocsState = () => {
       setRefreshUserDocs(refreshUserDocs + 1);
-    }
-    return <WrappedComponent {...props} userDocs={userDocs} refreshUserDocsState={refreshUserDocsState}/>;
+    };
+    return (
+      <WrappedComponent
+        {...props}
+        userDocs={userDocs}
+        refreshUserDocsState={refreshUserDocsState}
+      />
+    );
   };
 
   return Wrapper;

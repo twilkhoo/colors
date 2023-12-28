@@ -18,8 +18,12 @@ type ColorModalProps = {
   setSaveState: (num: number) => void;
 };
 
-const ColorModal = ({ isOpen, onClose, setMood, setSaveState }: ColorModalProps) => {
-
+const ColorModal = ({
+  isOpen,
+  onClose,
+  setMood,
+  setSaveState,
+}: ColorModalProps) => {
   const baseArr = Array.from(Array(6).keys());
 
   const handleMoodChange = (index: number) => {
@@ -31,22 +35,21 @@ const ColorModal = ({ isOpen, onClose, setMood, setSaveState }: ColorModalProps)
   const colorDesc = (index: number) => {
     index++;
     let str = "";
-    
+
     if (index == 1) {
-      str = "terrible day"
+      str = "terrible day";
     } else if (index == 2) {
-      str = "not a great day."
+      str = "not a great day.";
     } else if (index == 3) {
-      str = "average, slightly down day"
+      str = "average, slightly down day";
     } else if (index == 4) {
-      str = "average, slightly positive day"
+      str = "average, slightly positive day";
     } else if (index == 5) {
-      str = "feeling great"
+      str = "feeling great";
     } else if (index == 6) {
-      str = "amazing day"
+      str = "amazing day";
     }
 
-    
     return str;
   };
 
@@ -87,7 +90,9 @@ const ColorModal = ({ isOpen, onClose, setMood, setSaveState }: ColorModalProps)
                       boxShadow: "0 0 10px rgba(255, 255, 255, 0.5)",
                     }}
                   >
-                    <Text textStyle="modalSub" mx="10px" my="4px">{index + 1}</Text>
+                    <Text textStyle="modalSub" mx="10px" my="4px">
+                      {index + 1}
+                    </Text>
                   </Box>
                 </Tooltip>
               ))}
